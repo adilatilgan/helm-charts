@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  nginx:
+  - apiVersion: v2
+    appVersion: "1.27"
+    created: "2026-08-01T19:44:50.528296246Z"
+    description: A simple nginx web server chart with Ingress
+    digest: f8ece3d5c0d56bbd004e06b91a7e379afd1ade3f21cdd2e183ca811cc11fd8b6
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/adilatilgan/helm-charts/releases/download/nginx-0.1.1/nginx-0.1.1.tgz
+    version: 0.1.1
+generated: "2026-08-01T19:44:50.528301884Z"

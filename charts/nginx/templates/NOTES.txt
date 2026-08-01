@@ -1,0 +1,14 @@
+nginx has been deployed.
+
+{{- if .Values.ingress.enabled }}
+Ingress is enabled. Once the ingress-nginx controller is ready and
+{{ .Values.ingress.host }} resolves to it (e.g. via /etc/hosts), visit:
+
+  http{{ if .Values.ingress.tls.enabled }}s{{ end }}://{{ .Values.ingress.host }}{{ .Values.ingress.path }}
+{{- else }}
+Ingress is disabled. Access nginx with:
+
+  kubectl port-forward svc/{{ include "nginx.fullname" . }} 8080:{{ .Values.service.port }}
+
+then browse to http://localhost:8080
+{{- end }}

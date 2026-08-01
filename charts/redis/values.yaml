@@ -1,0 +1,25 @@
+image:
+  repository: redis
+  tag: "7-alpine"
+  pullPolicy: IfNotPresent
+
+auth:
+  enabled: false
+  # only used when auth.enabled is true
+  password: ""
+
+service:
+  port: 6379
+
+persistence:
+  enabled: false
+  size: 1Gi
+  storageClassName: ""
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

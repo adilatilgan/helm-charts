@@ -1,0 +1,13 @@
+PostgreSQL is deployed as a StatefulSet.
+
+Connect from inside the cluster:
+
+  host:     {{ include "postgres.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+  port:     {{ .Values.service.port }}
+  user:     {{ .Values.auth.username }}
+  database: {{ .Values.auth.database }}
+  password: kubectl get secret {{ include "postgres.fullname" . }} -n {{ .Release.Namespace }} -o jsonpath='{.data.POSTGRES_PASSWORD}' | base64 -d
+
+Port-forward for local access:
+
+  kubectl port-forward svc/{{ include "postgres.fullname" . }} -n {{ .Release.Namespace }} 5432:{{ .Values.service.port }}

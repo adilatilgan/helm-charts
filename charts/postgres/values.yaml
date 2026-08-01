@@ -1,0 +1,28 @@
+image:
+  repository: postgres
+  tag: "18-alpine"
+  pullPolicy: IfNotPresent
+
+auth:
+  username: postgres
+  # NOTE: default is for local dev clusters only. Override via
+  # `--set auth.password=...` or a separate values file for anything
+  # that isn't a throwaway local environment.
+  password: postgres
+  database: app
+
+service:
+  port: 5432
+
+persistence:
+  enabled: true
+  size: 2Gi
+  storageClassName: ""
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

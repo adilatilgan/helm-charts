@@ -1,0 +1,15 @@
+Redis is deployed as a StatefulSet.
+
+Connect from inside the cluster:
+
+  host: {{ include "redis.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+  port: {{ .Values.service.port }}
+{{- if .Values.auth.enabled }}
+  password: kubectl get secret {{ include "redis.fullname" . }} -n {{ .Release.Namespace }} -o jsonpath='{.data.REDIS_PASSWORD}' | base64 -d
+{{- else }}
+  auth: disabled
+{{- end }}
+
+Port-forward for local access:
+
+  kubectl port-forward svc/{{ include "redis.fullname" . }} -n {{ .Release.Namespace }} 6379:{{ .Values.service.port }}

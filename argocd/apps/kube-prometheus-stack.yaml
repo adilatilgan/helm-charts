@@ -14,6 +14,11 @@ spec:
     helm:
       values: |
         grafana:
+          # NOTE: pinned so every Helm render is deterministic (otherwise
+          # a fresh random password/secret gets generated on every ArgoCD
+          # sync, causing perpetual drift + selfHeal churn). Default is
+          # for local dev only — change it after first login.
+          adminPassword: admin
           ingress:
             enabled: true
             ingressClassName: nginx

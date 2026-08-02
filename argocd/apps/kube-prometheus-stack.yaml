@@ -30,6 +30,8 @@ spec:
               domain: nginx.local
               root_url: "%(protocol)s://%(domain)s/grafana/"
               serve_from_sub_path: true
+          serviceMonitor:
+            path: /grafana/metrics
 
         prometheus:
           prometheusSpec:
